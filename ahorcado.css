@@ -1,0 +1,118 @@
+/* 🎨 styles.css — Juego del Ahorcado */
+
+:root {
+  --bg: #f5f5f5;
+  --primary: #2b6cb0;
+  --secondary: #4a5568;
+  --danger: #e53e3e;
+  --muted: #718096;
+  --panel-bg: #fff;
+  --radius: 12px;
+  --shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: #222;
+}
+
+header {
+  padding: 1rem;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 { margin: 0; font-size: 1.5rem; }
+.controls {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+select, button {
+  padding: .4rem .6rem;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  font-size: .9rem;
+}
+button.primary {
+  background: #fff;
+  border: none;
+  color: var(--primary);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+button:hover { opacity: .9; }
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+.card, .panel {
+  background: var(--panel-bg);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.palabra {
+  font-size: 2rem;
+  letter-spacing: .5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+  gap: .4rem;
+}
+.teclado button {
+  padding: .5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: var(--radius);
+}
+.teclado button:disabled {
+  background: var(--muted);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.stats div { margin: .2rem 0; }
+
+.lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  font-size: .9rem;
+}
+
+.history {
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: .85rem;
+  line-height: 1.4;
+}
+
+footer {
+  text-align: center;
+  font-size: .8rem;
+  color: var(--secondary);
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  main { grid-template-columns: 1fr; }
+}

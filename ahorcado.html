@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juego del Ahorcado — </title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <h1>Juego del Ahorcado</h1>
+      <div class="controls">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" aria-label="Seleccionar categoría"></select>
+        <button id="btn-nueva" class="primary">Nueva Partida</button>
+        <button id="btn-reset" title="Restablecer historial">Reset Historial</button>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card">
+          <canvas id="pantalla" width="880" height="260">Tu navegador no soporta Canvas</canvas>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="palabra" id="cont-palabra" aria-live="polite"></div>
+          <div class="teclado" id="teclado" role="application" aria-label="Teclado de letras"></div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="panel">
+          <h3>Estado</h3>
+          <div class="stats">
+            <div>Victorias: <strong id="wins">0</strong></div>
+            <div>Derrotas: <strong id="losses">0</strong></div>
+            <div>Errores: <strong id="errors">0</strong>/6</div>
+          </div>
+          <p id="pista" style="margin-top:10px;color:var(--muted)"></p>
+        </div>
+
+        <div class="panel">
+          <h3>Letras utilizadas</h3>
+          <div class="lista" id="used-letters"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Historial (localStorage)</h3>
+          <div class="history" id="history"></div>
+        </div>
+      </aside>
+    </main>
+    <div class="panel">
+          <h3>Historial (SectionStorage)</h3>
+          <div class="history" id="history"></div>
+        </div>
+      </aside>
+    </main>
+
+
+  <script src="ahorcado.js"></script>
+</body>
+</html>
