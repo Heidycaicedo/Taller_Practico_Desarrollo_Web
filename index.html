@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Tareas</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Gestor de Tareas</h1>
+  </header>
+
+  <nav>
+    <input type="text" id="buscador" placeholder="Buscar tarea...">
+    <select id="filtro">
+      <option value="todas">Todas</option>
+      <option value="pendientes">Pendientes</option>
+      <option value="completadas">Completadas</option>
+    </select>
+  </nav>
+
+  <main>
+
+    <section id="seccion-formulario">
+      <h2>Nueva tarea</h2>
+      <form id="formulario-tarea">
+        <input type="text" id="descripcion" placeholder="Descripción de la tarea" required>
+        <input type="date" id="fecha" required>
+        <button type="submit">Agregar</button>
+      </form>
+    </section>
+
+    <section id="seccion-lista">
+      <h2>Lista de tareas</h2>
+      <ul id="lista-tareas">
+
+
+      </ul>
+    </section>
+
+    <section id="seccion-contadores">
+      <p>Pendientes: <span id="contador-pendientes">0</span></p>
+      <p>Completadas: <span id="contador-completadas">0</span></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Gestion de tarea</p>
+  </footer>
+
+  <script src="js/tarea.js"></script>
+  <script src="js/gestor.js"></script>
+  <script src="js/interfaz.js"></script>
+  <script src="js/principal.js"></script>
+</body>
+</html>
