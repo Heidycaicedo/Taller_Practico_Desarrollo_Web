@@ -83,6 +83,7 @@ section {
   color: white;
   border: none;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 #formulario-tarea button:hover {
@@ -99,6 +100,23 @@ section {
   justify-content: space-between;
   padding: 0.7rem;
   border-bottom: 1px solid #eee;
+  background: #fff;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: aparecer 0.3s ease-out forwards;
+  transition: background 0.3s, transform 0.3s;
+}
+
+#lista-tareas li:hover {
+  background: #f8f9fa;
+  transform: translateX(5px);
+}
+
+#lista-tareas li.completada {
+  background: #e6f9ec;
 }
 
 #lista-tareas li.completada .descripcion {
@@ -106,7 +124,28 @@ section {
   color: var(--color-secundario);
 }
 
-/* Botones en tareas */
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boton-estado {
+  background: var(--color-exito);
+  color: white;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.3rem;
+  transition: background 0.3s;
+}
+
+.boton-estado:hover {
+  background: #218838;
+}
+
 .boton-eliminar {
   background: var(--color-error);
   color: white;
@@ -114,6 +153,7 @@ section {
   padding: 0.4rem 0.7rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .boton-eliminar:hover {
@@ -126,6 +166,18 @@ section {
   font-weight: bold;
 }
 
+#seccion-contadores p {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+#contador-pendientes {
+  color: var(--color-error);
+}
+
+#contador-completadas {
+  color: var(--color-exito);
+}
 
 footer {
   background: var(--color-principal);
