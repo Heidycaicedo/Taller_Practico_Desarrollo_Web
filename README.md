@@ -1,1 +1,1 @@
-jueg-memorama
+juego-memorama
