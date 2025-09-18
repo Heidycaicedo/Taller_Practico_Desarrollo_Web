@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Memoria Visual</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Juego de Memoria Visual</h1>
+        </header>
+        
+        <div class="game-controls">
+            <div class="level-selector">
+                <label>Dificultad:</label>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" data-level="4">4x4 (Fácil)</button>
+                    <button class="difficulty-btn" data-level="6">6x6 (Medio)</button>
+                    <button class="difficulty-btn" data-level="10">10x10 (Difícil)</button>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Intentos:</span>
+                    <span id="attempts">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Tiempo:</span>
+                    <span id="timer">00:00</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Pares encontrados:</span>
+                    <span id="pairs-found">0</span>
+                </div>
+            </div>
+            
+            <div class="game-buttons">
+                <button id="new-game" class="btn btn-primary">Nueva Partida</button>
+                <button id="resume-game" class="btn btn-secondary" disabled>Retomar Partida</button>
+            </div>
+        </div>
+        
+        <div class="records-section">
+            <h3>🏆 Records</h3>
+            <div class="records">
+                <div class="record">
+                    <span class="record-label">Mejor tiempo:</span>
+                    <span id="best-time">--:--</span>
+                </div>
+                <div class="record">
+                    <span class="record-label">Menor intentos:</span>
+                    <span id="best-attempts">--</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-board" id="game-board">
+        </div>
+        
+        <div class="game-message" id="game-message"></div>
+    </div>
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
