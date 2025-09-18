@@ -21,25 +21,74 @@ document.addEventListener("DOMContentLoaded", () => {
   let usadas = [];
 
   const categorias = {
-    Animales: [
-      { word: "elefante", hint: "Animal terrestre grande con trompa" },
-      { word: "perro", hint: "Mejor amigo del hombre" },
-      { word: "gato", hint: "Felino doméstico" },
-        { word: "mariposa", hint: "" }
-    ],
-    Frutas: [
-      { word: "manzana", hint: "Roja o verde, muy común" },
-      { word: "banano", hint: "Amarillo y curvo" },
-      { word: "uva", hint: "Pequeña, puede ser morada o verde" }
-      
-      
-    ],
-    Países: [
-      { word: "colombia", hint: "Café, flores y esmeraldas" },
-      { word: "mexico", hint: "Mariachi y tacos" },
-      { word: "argentina", hint: "Tango y fútbol" }
-    ]
-  };
+  Animales: [
+    { word: "elefante", hint: "Animal terrestre grande con trompa" },
+    { word: "perro", hint: "Mejor amigo del hombre" },
+    { word: "gato", hint: "Felino doméstico" },
+    { word: "mariposa", hint: "Insecto con alas de colores" },
+    { word: "caballo", hint: "Animal usado para montar" },
+    { word: "vaca", hint: "Animal que da leche" },
+    { word: "leon", hint: "Rey de la selva" },
+    { word: "tigre", hint: "Felino rayado muy fuerte" },
+    { word: "oso", hint: "Animal grande que hiberna" },
+    { word: "conejo", hint: "Animal pequeño con orejas largas" },
+    { word: "jirafa", hint: "Animal con cuello largo" },
+    { word: "zorro", hint: "Animal astuto de cola esponjosa" },
+    { word: "canguro", hint: "Animal australiano que salta" },
+    { word: "panda", hint: "Oso blanco y negro" },
+    { word: "delfin", hint: "Mamífero marino muy inteligente" },
+    { word: "ballena", hint: "El animal más grande del planeta" },
+    { word: "tortuga", hint: "Reptil con caparazón" },
+    { word: "loro", hint: "Ave que puede imitar sonidos" },
+    { word: "aguila", hint: "Ave rapaz de gran visión" },
+    { word: "serpiente", hint: "Reptil sin patas" }
+  ],
+  Frutas: [
+    { word: "manzana", hint: "Roja o verde, muy común" },
+    { word: "banano", hint: "Amarillo y curvo" },
+    { word: "uva", hint: "Pequeña, puede ser morada o verde" },
+    { word: "naranja", hint: "Cítrica y de color anaranjado" },
+    { word: "fresa", hint: "Roja con semillas por fuera" },
+    { word: "sandia", hint: "Grande, verde por fuera y roja por dentro" },
+    { word: "melon", hint: "Parecido a la sandía pero de pulpa clara" },
+    { word: "piña", hint: "Tropical con corona de hojas" },
+    { word: "mango", hint: "Amarillo o verde, muy jugoso" },
+    { word: "papaya", hint: "Fruta anaranjada con semillas negras" },
+    { word: "kiwi", hint: "Pequeña, marrón por fuera y verde por dentro" },
+    { word: "cereza", hint: "Pequeña y roja, a veces en pareja" },
+    { word: "pera", hint: "Verde o amarilla, en forma de gota" },
+    { word: "coco", hint: "Duro por fuera, agua dulce dentro" },
+    { word: "granada", hint: "Fruta roja llena de semillas jugosas" },
+    { word: "limon", hint: "Ácido y amarillo o verde" },
+    { word: "guayaba", hint: "Aromática, rosada por dentro" },
+    { word: "maracuya", hint: "Fruta ácida y amarilla por dentro" },
+    { word: "durazno", hint: "Fruta aterciopelada y dulce" },
+    { word: "mandarina", hint: "Parecida a la naranja pero más pequeña" }
+  ],
+  Paises: [
+    { word: "colombia", hint: "Café, flores y esmeraldas" },
+    { word: "mexico", hint: "Mariachi y tacos" },
+    { word: "argentina", hint: "Tango y fútbol" },
+    { word: "brasil", hint: "Carnaval y samba" },
+    { word: "chile", hint: "Forma de cinta larga en Sudamérica" },
+    { word: "peru", hint: "Machu Picchu" },
+    { word: "ecuador", hint: "País de la mitad del mundo" },
+    { word: "venezuela", hint: "Arepas y petróleo" },
+    { word: "uruguay", hint: "País pequeño famoso por su carne y fútbol" },
+    { word: "paraguay", hint: "Guaraní y tereré" },
+    { word: "bolivia", hint: "Altiplano y salar de Uyuni" },
+    { word: "espana", hint: "Toros y flamenco" },
+    { word: "francia", hint: "Torre Eiffel" },
+    { word: "italia", hint: "Pizza y pasta" },
+    { word: "alemania", hint: "Oktoberfest y autos" },
+    { word: "japon", hint: "Samuráis y tecnología" },
+    { word: "china", hint: "Muralla y té" },
+    { word: "india", hint: "Taj Mahal" },
+    { word: "canada", hint: "Maple y hockey" },
+    { word: "estadosunidos", hint: "Hollywood y Nueva York" }
+  ]
+};
+
 
   for (let c in categorias) {
     const opt = document.createElement("option");
@@ -92,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     historyEl.innerHTML = localStorage.getItem("history") || "";
   }
 
-  // Manejo de letras
+
   function manejarLetra(l) {
     if (usadas.includes(l)) return;
     usadas.push(l);
@@ -140,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 4;
     ctx.strokeStyle = "#333";
-    // base
     ctx.beginPath();
     ctx.moveTo(50, 240);
     ctx.lineTo(200, 240);
@@ -155,26 +203,26 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.strokeStyle = "#333";
     ctx.beginPath();
     switch (num) {
-      case 1: // cabeza
+      case 1: 
         ctx.arc(300, 100, 30, 0, Math.PI * 2);
         break;
-      case 2: // cuerpo
+      case 2: 
         ctx.moveTo(300, 130);
         ctx.lineTo(300, 190);
         break;
-      case 3: // brazo izq
+      case 3: 
         ctx.moveTo(300, 140);
         ctx.lineTo(260, 170);
         break;
-      case 4: // brazo der
+      case 4: 
         ctx.moveTo(300, 140);
         ctx.lineTo(340, 170);
         break;
-      case 5: // pierna izq
+      case 5: 
         ctx.moveTo(300, 190);
         ctx.lineTo(270, 230);
         break;
-      case 6: // pierna der
+      case 6: 
         ctx.moveTo(300, 190);
         ctx.lineTo(330, 230);
         break;
@@ -182,18 +230,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.stroke();
   }
 
-  // Reset historial
+ 
   btnReset.addEventListener("click", () => {
     if (confirm("¿Seguro que deseas borrar historial y contadores?")) {
       localStorage.clear();
       actualizarVista();
     }
   });
-
-  // Nueva partida botón
+ 
   btnNueva.addEventListener("click", nuevaPartida);
 
-  // Teclado físico
+  
   document.addEventListener("keydown", e => {
     const l = e.key.toUpperCase();
     if (/^[A-ZÑ]$/.test(l)) manejarLetra(l);
