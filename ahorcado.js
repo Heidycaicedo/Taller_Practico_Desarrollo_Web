@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { word: "manzana", hint: "Roja o verde, muy común" },
       { word: "banano", hint: "Amarillo y curvo" },
       { word: "uva", hint: "Pequeña, puede ser morada o verde" }
+      
+      
     ],
     Países: [
       { word: "colombia", hint: "Café, flores y esmeraldas" },
@@ -39,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
-  // Inicializar select de categorías
   for (let c in categorias) {
     const opt = document.createElement("option");
     opt.value = c;
@@ -47,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     categoriaSelect.appendChild(opt);
   }
 
-  // Nueva partida
   function nuevaPartida() {
     const cat = categoriaSelect.value || Object.keys(categorias)[0];
     const lista = categorias[cat];
@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dibujarBase();
   }
 
-  // Actualizar interfaz
   function actualizarVista() {
     contPalabra.textContent = oculto.join(" ");
     errorsEl.textContent = errores;
@@ -73,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderHistorial();
   }
 
-  // Render teclado virtual
   function renderTeclado() {
     teclado.innerHTML = "";
     "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("").forEach(l => {
@@ -85,12 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Render letras usadas
   function renderUsadas() {
     usedLettersEl.textContent = usadas.join(", ");
   }
 
-  // Render historial
+
   function renderHistorial() {
     historyEl.innerHTML = localStorage.getItem("history") || "";
   }
@@ -111,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizarVista();
   }
 
-  // Verificar si ganó o perdió
+
   function verificarEstado() {
     if (!oculto.includes("_")) {
       alert("¡Ganaste! La palabra era " + palabra);
@@ -139,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.setItem("history", hist);
   }
 
-  // Dibujos del ahorcado
   function dibujarBase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 4;
