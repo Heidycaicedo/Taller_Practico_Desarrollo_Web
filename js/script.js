@@ -59,27 +59,27 @@ class MemoryGame {
             return;
         }
         
-        // Remover clase active de todos los botones
+        
         this.difficultyButtons.forEach(btn => btn.classList.remove('active'));
         
-        // Agregar clase active al botón seleccionado
+        
         button.classList.add('active');
         
-        // Actualizar el nivel
+        
         this.gameState.level = parseInt(button.dataset.level);
         
         this.showMessage(`Dificultad seleccionada: ${button.textContent}`, 'success');
     }
     
     initializeDifficulty() {
-        // Seleccionar el botón de dificultad por defecto (4x4)
+        
         const defaultButton = document.querySelector('[data-level="4"]');
         if (defaultButton) {
             defaultButton.classList.add('active');
         }
     }
     
-    // Sistema IndexedDB
+    
     async initDB() {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open('MemoryGameDB', 1);
@@ -98,13 +98,13 @@ class MemoryGame {
             request.onupgradeneeded = (event) => {
                 const db = event.target.result;
                 
-                // Crear object store para partidas
+                
                 if (!db.objectStoreNames.contains('games')) {
                     const gameStore = db.createObjectStore('games', { keyPath: 'id' });
                     gameStore.createIndex('isActive', 'isGameActive', { unique: false });
                 }
                 
-                // Crear object store para records
+                
                 if (!db.objectStoreNames.contains('records')) {
                     const recordStore = db.createObjectStore('records', { keyPath: 'key' });
                 }
@@ -113,7 +113,7 @@ class MemoryGame {
     }
     
     startNewGame() {
-        // Verificar que se haya seleccionado una dificultad
+        
         if (!this.gameState.level) {
             this.showMessage('Por favor selecciona una dificultad primero', 'error');
             return;
@@ -151,18 +151,18 @@ class MemoryGame {
         
         this.gameState = savedGame;
         
-        // Resetear cartas volteadas que no están emparejadas
+        
         this.gameState.cards.forEach(card => {
             if (!card.isMatched) {
                 card.isFlipped = false;
             }
         });
         
-        // Limpiar cartas volteadas temporalmente
+        
         this.gameState.flippedCards = [];
         
         this.renderBoard();
-        this.resumeTimer(); // Usar resumeTimer en lugar de startTimer
+        this.resumeTimer(); 
         this.updateDisplay();
         this.hideMessage();
         this.resumeGameBtn.disabled = true;
@@ -176,14 +176,14 @@ class MemoryGame {
         const totalCards = this.gameState.level * this.gameState.level;
         const pairsNeeded = totalCards / 2;
         
-        // Crear pares de animales
+        
         const cardAnimals = [];
         for (let i = 0; i < pairsNeeded; i++) {
             const animal = this.animals[i % this.animals.length];
-            cardAnimals.push(animal, animal); // Agregar el animal dos veces para formar un par
+            cardAnimals.push(animal, animal); 
         }
         
-        // Mezclar las cartas
+        
         this.gameState.cards = this.shuffleArray(cardAnimals).map((animal, index) => ({
             id: index,
             animal: animal,
@@ -205,7 +205,7 @@ class MemoryGame {
         this.gameBoard.innerHTML = '';
         this.gameBoard.style.gridTemplateColumns = `repeat(${this.gameState.level}, 1fr)`;
         
-        // Aplicar clase CSS según el nivel
+        
         this.gameBoard.className = 'game-board';
         if (this.gameState.level === 4) {
             this.gameBoard.classList.add('level-4');
@@ -242,7 +242,7 @@ class MemoryGame {
         const card = this.gameState.cards.find(c => c.id === cardId);
         if (!card || card.isFlipped || card.isMatched) return;
         
-        // Si ya hay 2 cartas volteadas, no permitir más clicks
+        
         if (this.gameState.flippedCards.length >= 2) return;
         
         this.flipCard(cardId);
@@ -279,7 +279,7 @@ class MemoryGame {
         const card2 = this.gameState.cards.find(c => c.id === card2Id);
         
         if (card1.animal === card2.animal) {
-            // Las cartas coinciden
+            
             card1.isMatched = true;
             card2.isMatched = true;
             this.gameState.matchedPairs++;
@@ -297,12 +297,12 @@ class MemoryGame {
             
             this.updateDisplay();
             
-            // Verificar si el juego terminó
+            
             if (this.gameState.matchedPairs === this.gameState.cards.length / 2) {
                 this.endGame();
             }
         } else {
-            // Las cartas no coinciden, voltearlas de nuevo
+            
             setTimeout(() => {
                 this.flipCardBack(card1Id);
                 this.flipCardBack(card2Id);
@@ -344,7 +344,7 @@ class MemoryGame {
             clearInterval(this.timerInterval);
         }
         
-        // Calcular el tiempo de inicio basado en el tiempo ya transcurrido
+        
         this.gameState.startTime = Date.now() - (this.gameState.gameTime * 1000);
         this.timerInterval = setInterval(() => {
             this.gameState.gameTime = Math.floor((Date.now() - this.gameState.startTime) / 1000);
@@ -426,7 +426,7 @@ class MemoryGame {
         this.gameMessage.className = 'game-message';
     }
     
-    // Sistema de persistencia con IndexedDB
+    
     async saveGame() {
         if (this.gameState.isGameActive && this.db) {
             try {
@@ -496,7 +496,7 @@ class MemoryGame {
         }
     }
     
-    // Sistema de records con IndexedDB
+    
     async setRecord(key, value) {
         if (!this.db) return;
         
@@ -556,7 +556,7 @@ class MemoryGame {
     }
 }
 
-// Inicializar el juego cuando se carga la página
+
 document.addEventListener('DOMContentLoaded', () => {
     new MemoryGame();
 });
